@@ -7,7 +7,7 @@ const icon = $.querySelector('.icon')
 const closeIcon = $.querySelector('.close-icon')
 const durationBarElem = $.querySelector('.duration-bar')
 
-const ajaxReq = () => {
+function ajaxReq () {
     const url = "https://jsonplaceholder.typicode.com/posts"
     fetch(url).then(res => {
         // console.log(res.status);
@@ -16,9 +16,11 @@ const ajaxReq = () => {
             durationBarElem.style.backgroundColor = "#2ecc71"
             subTitleElem.textContent = 'Internet is connected :)'
             toastElem.classList.remove('offline')
-            setInterval(() => {
-                closeWrapper()
+
+            setTimeout(() => {
+                wrapperElem.classList.add('hide')
             }, 5000);
+
             icon.innerHTML = '<i class="uil uil-wifi"></i>'
         } else {
             offline()
@@ -30,7 +32,7 @@ const ajaxReq = () => {
     })
 }
 
-const offline = () => {
+function offline () {
     wrapperElem.classList.remove('hide')
     durationBarElem.style.backgroundColor = "#ccc"
     titleElem.textContent = 'You\'r offline now'
@@ -39,14 +41,14 @@ const offline = () => {
     setInterval(() => {
         closeWrapper()
     }, 5000);
-    icon.innerHTML = '<i class="uil uil-slash"></i>'
+    icon.innerHTML = '<i class="uil uil-wifi-slash"></i>'
 }
-const closeWrapper = () => {
+
+closeIcon.addEventListener('click', () => {
     wrapperElem.classList.add('hide')
-}
-
-closeIcon.addEventListener('click', closeWrapper)
+})
 window.addEventListener('load', () => {
-    ajaxReq()
-
+    setInterval(() => {
+        ajaxReq()
+    }, 1000)
 })
