@@ -28,4 +28,4 @@ const closeWrapper = () => {
 }
 
 closeIcon.addEventListener('click', closeWrapper)
-// window.addEventListener('load', ajaxReq)
+window.addEventListener('load', ajaxReq)
