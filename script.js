@@ -12,7 +12,7 @@ function ajaxReq () {
     fetch(url).then(res => {
         // console.log(res.status);
         if (res.status === 200 || res.status < 300) {
-            titleElem.textContent = 'You\'r online now'
+            titleElem.textContent = 'You\'re online now'
             durationBarElem.style.backgroundColor = "#2ecc71"
             subTitleElem.textContent = 'Internet is connected :)'
             toastElem.classList.remove('offline')
@@ -22,8 +22,7 @@ function ajaxReq () {
             }, 5000);
 
             icon.innerHTML = '<i class="uil uil-wifi"></i>'
-        } else {
-            offline()
+        } else if (res.status) {
         }
     })
     .catch(err => {
@@ -48,7 +47,7 @@ closeIcon.addEventListener('click', () => {
     wrapperElem.classList.add('hide')
 })
 window.addEventListener('load', () => {
-    setInterval(() => {
-        ajaxReq()
-    }, 1000)
 })
+setInterval(() => {
+    ajaxReq()
+}, 1000)
